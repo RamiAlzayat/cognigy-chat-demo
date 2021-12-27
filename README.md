@@ -1,4 +1,4 @@
-### Cognigy Chat app
+# Cognigy Chat app
 
 The Demo is deployed on my RPI3 server: https://cognigy.alzayat.de/
 
