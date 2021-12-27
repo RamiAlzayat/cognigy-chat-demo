@@ -4,7 +4,7 @@ The Demo is deployed on my RPI3 server: https://cognigy.alzayat.de/
 
 ## Dev Requirements
 
-node 'lts/\*' or 'v16.13.1' or greater
+node lts/\* or v16.13.1 or greater<br />
 If you have nvm installed just run `nvm use`
 otherwise download it from `https://nodejs.org/en/download/`
 
