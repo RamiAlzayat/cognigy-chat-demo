@@ -91,8 +91,12 @@ const Message = React.forwardRef((props: MessageProps, ref: MessageProps['ref'])
       id={sentByBot ? 'cy-bot-message' : 'cy-user-message'}
     >
       <div className={messageClasses}>
-        <span>{message}</span>
-        <br />
+        {message && (
+          <>
+            <span>{message}</span>
+            <br />
+          </>
+        )}
         {imageUrl && <img src={imageUrl} width="100%" alt="" />}
         <span className={classes.timeStamp}>{timeStamp}</span>
         <Avatar className={avatarClasses} alt="" src={sentByBot ? botAvatar : userAvatar} />
