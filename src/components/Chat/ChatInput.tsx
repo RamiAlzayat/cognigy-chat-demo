@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     position: 'absolute',
     right: 0,
     bottom: 0,
+    color: '#6495ed',
   },
   input: {
     height: 32,
