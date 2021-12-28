@@ -1,6 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import { Avatar } from '@material-ui/core';
+import botAvatar from '../../assets/images/bot.svg';
+import userAvatar from '../../assets/images/user.svg';
 
 const useStyles = makeStyles({
   message: {
@@ -14,11 +17,12 @@ const useStyles = makeStyles({
     paddingBottom: 4,
   },
   userMessage: {
-    backgroundColor: '#a3746f',
+    backgroundColor: '#9d7e7a',
     color: '#fff',
     marginLeft: 16,
     textAlign: 'left',
     float: 'left',
+    borderTopLeftRadius: 0,
   },
   botMessage: {
     backgroundColor: '#9fa2b1',
@@ -26,30 +30,32 @@ const useStyles = makeStyles({
     marginRight: 16,
     textAlign: 'left',
     float: 'right',
-  },
-  messageArrow: {
-    position: 'absolute',
-    bottom: '-11px',
-    width: 0,
-    height: 0,
-    borderLeft: '1vh solid transparent',
-    borderRight: '1vh solid transparent',
-    zIndex: -1,
-  },
-  botMessageArrow: {
-    borderTop: '24px solid #9fa2b1',
-    right: '2%',
-    transform: 'rotate(-50deg)',
-  },
-  userMessageArrow: {
-    borderTop: '24px solid #a3746f',
-    left: '2%',
-    transform: 'rotate(50deg)',
+    borderTopRightRadius: 0,
   },
   timeStamp: {
     fontSize: 10,
     float: 'right',
     fontStyle: 'italic',
+  },
+  avatar: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: 22,
+    height: 22,
+    fontSize: 14,
+    '& img': {
+      width: '60%',
+      height: '60%',
+    },
+  },
+  botMessageAvatar: {
+    left: -11,
+    backgroundColor: '#9fa2b1',
+  },
+  userMessageAvatar: {
+    right: -11,
+    backgroundColor: '#9d7e7a',
   },
 });
 
@@ -70,9 +76,9 @@ const Message = React.forwardRef((props: MessageProps, ref: MessageProps['ref'])
     [classes.userMessage]: !sentByBot,
   });
 
-  const messageArrowClasses = classNames(classes.messageArrow, {
-    [classes.botMessageArrow]: sentByBot,
-    [classes.userMessageArrow]: !sentByBot,
+  const avatarClasses = classNames(classes.avatar, {
+    [classes.botMessageAvatar]: sentByBot,
+    [classes.userMessageAvatar]: !sentByBot,
   });
 
   return (
@@ -82,12 +88,13 @@ const Message = React.forwardRef((props: MessageProps, ref: MessageProps['ref'])
       ref={ref}
       id={sentByBot ? 'cy-bot-message' : 'cy-user-message'}
     >
-      <p className={messageClasses}>
-        {message}
+      <div className={messageClasses}>
+        <span>{message}</span>
         <br />
         <span className={classes.timeStamp}>{timeStamp}</span>
-        <span className={messageArrowClasses} />
-      </p>
+
+        <Avatar className={avatarClasses} alt="" src={sentByBot ? botAvatar : userAvatar} />
+      </div>
     </li>
   );
 });
