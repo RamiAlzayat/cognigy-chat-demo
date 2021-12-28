@@ -80,6 +80,7 @@ const ChatWindow: React.FC = () => {
         sentByBot={sentByBot}
         message={item.text}
         timeStamp={item.timestamp}
+        imageUrl={item.imageUrl}
       />
     );
   });

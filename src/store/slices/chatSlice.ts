@@ -13,6 +13,7 @@ interface MessageObject {
   text: string;
   sender: string;
   timestamp: string;
+  imageUrl?: string;
 }
 
 type MessageArray = Array<MessageObject>;
@@ -35,9 +36,23 @@ export const initCognigyAi = createAsyncThunk('chat/initApi', async () => {
   return response.data;
 });
 
+interface outputData {
+  _cognigy: {
+    _default: {
+      _image: {
+        imageUrl: string;
+      };
+    };
+  };
+}
+
 export const addMessageHandler = (): AppThunk => async (dispatch) => {
-  client.on('output', (output: { text: string }) => {
-    output.text && dispatch(responseMessage(output.text));
+  client.on('output', (output: { text: string; data: outputData }) => {
+    const imageUrl = output.data?._cognigy?._default?._image.imageUrl;
+
+    if (output.text || imageUrl) {
+      dispatch(responseMessage({ text: output.text, imageUrl: imageUrl }));
+    }
   });
 };
 
@@ -58,15 +73,14 @@ export const chatSlice = createSlice({
       });
       client.sendMessage(action.payload);
     },
-    responseMessage: (state, action: PayloadAction<string>) => {
+    responseMessage: (state, action: { payload: { text: string; imageUrl: string } }) => {
       state.messages.push({
         sender: 'bot',
-        text: action.payload,
+        text: action.payload.text,
         timestamp: getCurrentTimeStamp(),
+        imageUrl: action.payload.imageUrl,
       });
-      // if (!state.chatIsOpen) {
-      // state.hasNewMessage = true;
-      // }
+
       state.hasNewMessage = true;
     },
   },

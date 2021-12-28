@@ -66,11 +66,12 @@ interface MessageProps {
   sentByBot: boolean;
   ref: React.Ref<HTMLLIElement> | null;
   timeStamp: string;
+  imageUrl: string | undefined;
 }
 
 const Message = React.forwardRef((props: MessageProps, ref: MessageProps['ref']) => {
   const classes = useStyles();
-  const { message, index, sentByBot, timeStamp } = props;
+  const { message, index, sentByBot, timeStamp, imageUrl } = props;
 
   const messageClasses = classNames(classes.message, {
     [classes.botMessage]: sentByBot,
@@ -92,8 +93,8 @@ const Message = React.forwardRef((props: MessageProps, ref: MessageProps['ref'])
       <div className={messageClasses}>
         <span>{message}</span>
         <br />
+        {imageUrl && <img src={imageUrl} width="100%" alt="" />}
         <span className={classes.timeStamp}>{timeStamp}</span>
-
         <Avatar className={avatarClasses} alt="" src={sentByBot ? botAvatar : userAvatar} />
       </div>
     </li>
