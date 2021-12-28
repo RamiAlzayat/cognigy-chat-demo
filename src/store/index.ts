@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import chatReducer from '../slices/chatSlice';
+import chatReducer from './slices/chatSlice';
 
 export const store = configureStore({
   reducer: {

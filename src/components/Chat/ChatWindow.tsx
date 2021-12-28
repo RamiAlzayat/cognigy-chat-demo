@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import ChatInput from './ChatInput';
 import Message from './Message';
 
-import { useAppSelector } from '../../app/hooks';
-import { selectChatIsOpen, selectMessages } from '../../slices/chatSlice';
+import { useAppSelector } from '../../store/hooks';
+import { selectChatIsOpen, selectMessages } from '../../store/slices/chatSlice';
 
 const useStyles = makeStyles({
   chatWindow: {

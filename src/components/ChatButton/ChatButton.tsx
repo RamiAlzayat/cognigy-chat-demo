@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { toggleChat, selectChatIsOpen, selectHasNewMessage } from '../../slices/chatSlice';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { toggleChat, selectChatIsOpen, selectHasNewMessage } from '../../store/slices/chatSlice';
 import classNames from 'classnames';
 
 import NotificationBadge from './NotificationBadge';

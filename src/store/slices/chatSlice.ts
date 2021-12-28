@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { AppThunk, RootState } from '../app/store';
+import { AppThunk, RootState } from '..';
 import { SocketClient } from '@cognigy/socket-client';
 const client = new SocketClient(
   'https://endpoint-trial.cognigy.ai',

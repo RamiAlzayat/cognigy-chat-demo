@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormControl, Input, IconButton } from '@material-ui/core';
 
-import { useAppDispatch } from '../../app/hooks';
-import { postMessage } from '../../slices/chatSlice';
+import { useAppDispatch } from '../../store/hooks';
+import { postMessage } from '../../store/slices/chatSlice';
 
 import SendIcon from '@material-ui/icons/Send';
 
