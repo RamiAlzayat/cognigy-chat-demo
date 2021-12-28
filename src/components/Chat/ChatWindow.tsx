@@ -15,13 +15,12 @@ const useStyles = makeStyles({
     justifyContent: 'flex-end',
     width: 320,
     height: 500,
-    backgroundColor: '#fff',
+    backgroundColor: '#e5e5e5',
     marginLeft: 'auto',
     marginRight: 'auto',
     borderRadius: 8,
   },
   messagesList: {
-    backgroundColor: '#CFEFEB',
     height: '100%',
     overflowY: 'auto',
     width: '100%',
@@ -34,7 +33,7 @@ const useStyles = makeStyles({
   emptyState: {
     width: 'inherit',
     margin: 'auto',
-    backgroundColor: '#FFFFFF',
+    filter: 'brightness(0.9)',
   },
 });
 

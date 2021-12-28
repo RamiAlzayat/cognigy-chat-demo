@@ -10,7 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles(() => ({
   button: {
-    backgroundColor: '#9C0',
+    backgroundColor: '#333',
   },
   icon: {
     fontSize: '2rem',
