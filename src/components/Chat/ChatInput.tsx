@@ -28,6 +28,9 @@ const useStyles = makeStyles({
     borderTop: '2px solid #F5F4F5',
     backgroundColor: '#FFF',
     borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    fontFamily: 'Open Sans',
+    fontWeight: 600,
   },
 });
 

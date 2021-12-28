@@ -11,6 +11,7 @@ import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles(() => ({
   button: {
     backgroundColor: '#333',
+    marginTop: 16,
   },
   icon: {
     fontSize: '2rem',
@@ -29,21 +30,19 @@ const ChatButton: React.FC = () => {
   });
 
   return (
-    <div>
-      <IconButton
-        className={buttonClasses}
-        onClick={() => dispatch(toggleChat())}
-        aria-label="toggle chat"
-        id="cy-chat-button"
-      >
-        {hasNewMessage && <NotificationBadge />}
-        {chatIsOpen ? (
-          <CloseIcon className={classes.icon} id="cy-close-chat" />
-        ) : (
-          <ChatIcon className={classes.icon} id="cy-open-chat" />
-        )}
-      </IconButton>
-    </div>
+    <IconButton
+      className={buttonClasses}
+      onClick={() => dispatch(toggleChat())}
+      aria-label="toggle chat"
+      id="cy-chat-button"
+    >
+      {hasNewMessage && <NotificationBadge />}
+      {chatIsOpen ? (
+        <CloseIcon className={classes.icon} id="cy-close-chat" />
+      ) : (
+        <ChatIcon className={classes.icon} id="cy-open-chat" />
+      )}
+    </IconButton>
   );
 };
 

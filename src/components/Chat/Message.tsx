@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     marginBottom: 8,
     marginTop: 8,
     paddingBottom: 4,
+    fontWeight: 600,
   },
   userMessage: {
     backgroundColor: '#9d7e7a',

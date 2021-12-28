@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import ChatInput from './ChatInput';
@@ -14,7 +14,8 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     width: 320,
-    height: 500,
+    height: '80%',
+    maxHeight: 500,
     backgroundColor: '#e5e5e5',
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -38,6 +39,7 @@ const useStyles = makeStyles({
 });
 
 const ChatWindow: React.FC = () => {
+  const [showChat, setShowChat] = useState(false);
   const messagesListRef = useRef<HTMLUListElement>(null);
   const scrollTargetRef = useRef<HTMLLIElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -53,12 +55,14 @@ const ChatWindow: React.FC = () => {
     });
     if (chatIsOpen) {
       inputRef.current?.focus();
+      setShowChat(true);
     }
   }, [messages, chatIsOpen]);
 
   const chatClasses = classNames(`animate__animated  ${classes.chatWindow}`, {
     animate__zoomInUp: chatIsOpen,
     animate__zoomOutDown: !chatIsOpen,
+    hidden: !showChat,
   });
 
   const renderMessages = messages.map((item, index) => {
