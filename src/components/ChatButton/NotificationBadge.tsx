@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { playAudio } from '../../helpers/helpers';
 
 const useStyles = makeStyles(() => ({
   dot: {
@@ -15,6 +17,10 @@ const useStyles = makeStyles(() => ({
 
 const NotificationBadge: React.FC = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    playAudio();
+  }, []);
 
   return <div className={`${classes.dot} animate__animated animate__fadeIn`} />;
 };

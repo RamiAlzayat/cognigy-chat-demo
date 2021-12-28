@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import ChatInput from './ChatInput';
 import Message from './Message';
-
+import emptyStateImg from '../../assets/images/empty.png';
 import { useAppSelector } from '../../store/hooks';
 import { selectChatIsOpen, selectMessages } from '../../store/slices/chatSlice';
 
@@ -21,13 +21,20 @@ const useStyles = makeStyles({
     borderRadius: 8,
   },
   messagesList: {
+    backgroundColor: '#CFEFEB',
     height: '100%',
     overflowY: 'auto',
     width: '100%',
     padding: 0,
     listStyle: 'none',
-    marginTop: 4,
-    marginBottom: 4,
+    margin: 0,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+  },
+  emptyState: {
+    width: 'inherit',
+    margin: 'auto',
+    backgroundColor: '#FFFFFF',
   },
 });
 
@@ -58,14 +65,32 @@ const ChatWindow: React.FC = () => {
   const renderMessages = messages.map((item, index) => {
     const sentByBot = item.sender === 'bot';
     const lastMessageRef = messages.length - 1 === index ? scrollTargetRef : null;
-    return <Message key={index} index={index} ref={lastMessageRef} sentByBot={sentByBot} message={item.text} />;
+    return (
+      <Message
+        key={index}
+        index={index}
+        ref={lastMessageRef}
+        sentByBot={sentByBot}
+        message={item.text}
+        timeStamp={item.timestamp}
+      />
+    );
   });
+
+  const renderEmptyState = () => {
+    return <img className={classes.emptyState} src={emptyStateImg} />;
+  };
 
   return (
     <div className={chatClasses} onClick={() => inputRef.current?.focus()} id="cy-chat-window">
-      <ul ref={messagesListRef} className={classes.messagesList} id="cy-chat-messages-list">
-        {renderMessages}
-      </ul>
+      {messages.length ? (
+        <ul ref={messagesListRef} className={classes.messagesList} id="cy-chat-messages-list">
+          {renderMessages}
+        </ul>
+      ) : (
+        renderEmptyState()
+      )}
+
       <ChatInput ref={inputRef} />
     </div>
   );

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '..';
+import { getCurrentTimeStamp } from '../../helpers/helpers';
 import { SocketClient } from '@cognigy/socket-client';
 const client = new SocketClient(
   'https://endpoint-trial.cognigy.ai',
@@ -11,6 +12,7 @@ const client = new SocketClient(
 interface MessageObject {
   text: string;
   sender: string;
+  timestamp: string;
 }
 
 type MessageArray = Array<MessageObject>;
@@ -53,6 +55,7 @@ export const chatSlice = createSlice({
       state.messages.push({
         sender: 'user',
         text: action.payload,
+        timestamp: getCurrentTimeStamp(),
       });
       client.sendMessage(action.payload);
     },
@@ -60,6 +63,7 @@ export const chatSlice = createSlice({
       state.messages.push({
         sender: 'bot',
         text: action.payload,
+        timestamp: getCurrentTimeStamp(),
       });
       if (!state.chatIsOpen) {
         state.hasNewMessage = true;

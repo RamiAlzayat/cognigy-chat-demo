@@ -1,10 +1,8 @@
-import { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { toggleChat, selectChatIsOpen, selectHasNewMessage } from '../../store/slices/chatSlice';
 import classNames from 'classnames';
 
-import { playAudio } from '../../helpers/audioHelpers';
 import NotificationBadge from './NotificationBadge';
 import { IconButton } from '@material-ui/core';
 import ChatIcon from '@material-ui/icons/Chat';
@@ -25,12 +23,6 @@ const ChatButton: React.FC = () => {
   const hasNewMessage = useAppSelector(selectHasNewMessage);
   const dispatch = useAppDispatch();
   const classes = useStyles();
-
-  useEffect(() => {
-    if (hasNewMessage) {
-      playAudio();
-    }
-  }, [hasNewMessage]);
 
   const buttonClasses = classNames(`chat-button animate__animated ${classes.button}`, {
     animate__heartBeat: hasNewMessage,

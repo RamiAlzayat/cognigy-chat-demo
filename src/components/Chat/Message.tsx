@@ -11,16 +11,17 @@ const useStyles = makeStyles({
     fontSize: 18,
     marginBottom: 8,
     marginTop: 8,
+    paddingBottom: 4,
   },
   userMessage: {
-    backgroundColor: '#3163e4',
-    color: '#fff',
+    backgroundColor: '#c6c9d8',
+    color: '#333',
     marginLeft: 16,
     textAlign: 'left',
     float: 'left',
   },
   botMessage: {
-    backgroundColor: '#e8e4e8',
+    backgroundColor: '#fff',
     color: '#333',
     marginRight: 16,
     textAlign: 'left',
@@ -33,16 +34,22 @@ const useStyles = makeStyles({
     height: 0,
     borderLeft: '1vh solid transparent',
     borderRight: '1vh solid transparent',
+    zIndex: -1,
   },
   botMessageArrow: {
-    borderTop: '24px solid #e8e4e8',
+    borderTop: '24px solid #fff',
     right: '2%',
     transform: 'rotate(-50deg)',
   },
   userMessageArrow: {
-    borderTop: '24px solid #3163e4',
+    borderTop: '24px solid #c6c9d8',
     left: '2%',
     transform: 'rotate(50deg)',
+  },
+  timeStamp: {
+    fontSize: 10,
+    float: 'right',
+    fontStyle: 'italic',
   },
 });
 
@@ -51,11 +58,12 @@ interface MessageProps {
   index: number;
   sentByBot: boolean;
   ref: React.Ref<HTMLLIElement> | null;
+  timeStamp: string;
 }
 
 const Message = React.forwardRef((props: MessageProps, ref: MessageProps['ref']) => {
   const classes = useStyles();
-  const { message, index, sentByBot } = props;
+  const { message, index, sentByBot, timeStamp } = props;
 
   const messageClasses = classNames(classes.message, {
     [classes.botMessage]: sentByBot,
@@ -76,6 +84,8 @@ const Message = React.forwardRef((props: MessageProps, ref: MessageProps['ref'])
     >
       <p className={messageClasses}>
         {message}
+        <br />
+        <span className={classes.timeStamp}>{timeStamp}</span>
         <span className={messageArrowClasses} />
       </p>
     </li>

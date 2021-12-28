@@ -24,6 +24,8 @@ const useStyles = makeStyles({
     paddingLeft: 8,
     fontSize: 17,
     borderTop: '2px solid #F5F4F5',
+    backgroundColor: '#FFF',
+    borderBottomLeftRadius: 8,
   },
 });
 
