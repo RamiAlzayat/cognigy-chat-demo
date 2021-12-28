@@ -53,15 +53,15 @@ const ChatWindow: React.FC = () => {
   const classes = useStyles();
 
   useEffect(() => {
+    if (chatIsOpen || showChat) {
+      setShowChat(true);
+      inputRef.current?.focus();
+    }
     messagesListRef.current?.scrollTo({
       top: messagesListRef.current.scrollHeight,
       behavior: 'smooth',
     });
-    if (chatIsOpen) {
-      inputRef.current?.focus();
-      setShowChat(true);
-    }
-  }, [messages, chatIsOpen]);
+  }, [messages, chatIsOpen, showChat]);
 
   const chatClasses = classNames(`animate__animated animate__faster ${classes.chatWindow}`, {
     animate__zoomIn: chatIsOpen,
