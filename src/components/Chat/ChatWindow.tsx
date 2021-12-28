@@ -85,7 +85,7 @@ const ChatWindow: React.FC = () => {
   });
 
   const renderEmptyState = () => {
-    return <img className={classes.emptyState} src={emptyStateImg} />;
+    return <img className={classes.emptyState} src={emptyStateImg} id="cy-empty-chat" />;
   };
 
   return (

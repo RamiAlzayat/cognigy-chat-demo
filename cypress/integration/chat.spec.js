@@ -21,7 +21,8 @@ context('Chat', () => {
     cy.get('#cy-chat-window')
       .should('exist')
       .within(() => {
-        cy.get('#cy-chat-messages-list').should('exist');
+        cy.get('#cy-chat-messages-list').should('not.exist');
+        cy.get('#cy-empty-chat').should('exist');
         cy.get('#cy-message').should('not.exist');
         cy.get('#cy-form').should('exist');
         cy.get('#cy-chat-input').should('exist');
