@@ -52,6 +52,7 @@ export const chatSlice = createSlice({
       }
     },
     sendMessage: (state, action: PayloadAction<string>) => {
+      state.hasNewMessage = false;
       state.messages.push({
         sender: 'user',
         text: action.payload,
@@ -65,9 +66,10 @@ export const chatSlice = createSlice({
         text: action.payload,
         timestamp: getCurrentTimeStamp(),
       });
-      if (!state.chatIsOpen) {
-        state.hasNewMessage = true;
-      }
+      // if (!state.chatIsOpen) {
+      // state.hasNewMessage = true;
+      // }
+      state.hasNewMessage = true;
     },
   },
   extraReducers: (builder) => {
