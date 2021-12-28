@@ -11,3 +11,8 @@ const audioObj = new Audio(incomingMessage);
 export const playAudio = () => {
   audioObj.play();
 };
+
+export const handleOnResize = () => {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
