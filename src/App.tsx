@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch } from './store/hooks';
-import { initApiAsync, messageHandler } from './store/slices/chatSlice';
+import { initCognigyAi, addMessageHandler } from './store/slices/chatSlice';
 
 import ChatButton from './components/ChatButton/ChatButton';
 import ChatWindow from './components/Chat/ChatWindow';
@@ -16,8 +16,8 @@ const App: React.FC = () => {
   }, []);
 
   const initChat = () => {
-    dispatch(initApiAsync());
-    dispatch(messageHandler());
+    dispatch(addMessageHandler());
+    dispatch(initCognigyAi());
   };
 
   return (

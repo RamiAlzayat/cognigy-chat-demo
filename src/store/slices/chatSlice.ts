@@ -28,14 +28,14 @@ const initialState: ChatState = {
   hasNewMessage: false,
 };
 
-export const initApiAsync = createAsyncThunk('chat/initApi', async () => {
+export const initCognigyAi = createAsyncThunk('chat/initApi', async () => {
   const response = await client.connect();
   return response.data;
 });
 
-export const messageHandler = (): AppThunk => async (dispatch) => {
+export const addMessageHandler = (): AppThunk => async (dispatch) => {
   client.on('output', (output: { text: string }) => {
-    output.text && dispatch(receivedMessage(output.text));
+    output.text && dispatch(responseMessage(output.text));
   });
 };
 
@@ -49,14 +49,14 @@ export const chatSlice = createSlice({
         state.hasNewMessage = false;
       }
     },
-    postMessage: (state, action: PayloadAction<string>) => {
+    sendMessage: (state, action: PayloadAction<string>) => {
       state.messages.push({
         sender: 'user',
         text: action.payload,
       });
       client.sendMessage(action.payload);
     },
-    receivedMessage: (state, action: PayloadAction<string>) => {
+    responseMessage: (state, action: PayloadAction<string>) => {
       state.messages.push({
         sender: 'bot',
         text: action.payload,
@@ -68,16 +68,16 @@ export const chatSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(initApiAsync.pending, (state) => {
+      .addCase(initCognigyAi.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(initApiAsync.fulfilled, (state) => {
+      .addCase(initCognigyAi.fulfilled, (state) => {
         state.status = 'loaded';
       });
   },
 });
 
-export const { toggleChat, postMessage, receivedMessage } = chatSlice.actions;
+export const { toggleChat, sendMessage, responseMessage } = chatSlice.actions;
 
 export const selectChatIsOpen = (state: RootState) => state.chat.chatIsOpen;
 export const selectMessages = (state: RootState) => state.chat.messages;

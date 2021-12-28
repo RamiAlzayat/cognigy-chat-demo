@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { FormControl, Input, IconButton } from '@material-ui/core';
 
 import { useAppDispatch } from '../../store/hooks';
-import { postMessage } from '../../store/slices/chatSlice';
+import { sendMessage } from '../../store/slices/chatSlice';
 
 import SendIcon from '@material-ui/icons/Send';
 
@@ -39,7 +39,7 @@ const ChatInput = React.forwardRef((_props, ref) => {
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (!value.trim()) return;
-    dispatch(postMessage(value));
+    dispatch(sendMessage(value));
     setValue('');
   };
 
