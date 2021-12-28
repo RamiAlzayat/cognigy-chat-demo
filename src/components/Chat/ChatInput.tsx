@@ -51,6 +51,7 @@ const ChatInput = React.forwardRef((_props, ref) => {
           inputRef={ref}
           value={value}
           autoFocus={true}
+          autoComplete="off"
           onChange={handleOnChange}
           inputProps={{
             className: classes.input,
