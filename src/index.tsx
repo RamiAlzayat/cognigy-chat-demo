@@ -6,6 +6,9 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
+const vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
