@@ -21,6 +21,21 @@ const useStyles = makeStyles({
     alignItems: 'center',
     marginBottom: 16,
   },
+  app: {
+    textAlign: 'center',
+    height: 'calc(var(--vh, 1vh) * 100)',
+    display: 'flex',
+    flexDirection: 'column',
+    placeContent: 'space-around',
+    backgroundColor: '#77382254',
+    overflow: 'hidden',
+  },
+  appLogo: {
+    height: '5vmin',
+  },
+  appHeader: {
+    marginTop: 16,
+  },
 });
 
 const App: React.FC = () => {
@@ -41,9 +56,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className={classes.app}>
+      <header className={classes.appHeader}>
+        <img src={logo} className={classes.appLogo} alt="logo" />
       </header>
       <div className={classes.container}>
         <ChatWindow />

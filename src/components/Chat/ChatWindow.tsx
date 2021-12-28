@@ -30,9 +30,13 @@ const useStyles = makeStyles({
     margin: 0,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
+    '&::-webkit-scrollbar': {
+      width: 0,
+      background: 'transparent',
+    },
   },
   emptyState: {
-    width: 'inherit',
+    width: '100%',
     margin: 'auto',
     filter: 'brightness(0.9)',
   },
@@ -59,9 +63,9 @@ const ChatWindow: React.FC = () => {
     }
   }, [messages, chatIsOpen]);
 
-  const chatClasses = classNames(`animate__animated  ${classes.chatWindow}`, {
-    animate__zoomInUp: chatIsOpen,
-    animate__zoomOutDown: !chatIsOpen,
+  const chatClasses = classNames(`animate__animated animate__faster ${classes.chatWindow}`, {
+    animate__zoomIn: chatIsOpen,
+    animate__zoomOut: !chatIsOpen,
     hidden: !showChat,
   });
 

@@ -9,29 +9,3 @@ body {
 .hidden {
   display: none !important;
 }
-
-.App {
-  text-align: center;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  display: flex;
-  flex-direction: column;
-  place-content: space-around;
-  background-color: #77382254;
-  overflow: hidden;
-}
-
-.App-logo {
-  height: 5vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  margin-top: 8px;
-  font-size: calc(10px + 2vmin);
-}
-
-::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
-}
