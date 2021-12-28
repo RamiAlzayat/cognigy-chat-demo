@@ -47,9 +47,7 @@ export const chatSlice = createSlice({
   reducers: {
     toggleChat: (state) => {
       state.chatIsOpen = !state.chatIsOpen;
-      if (state.chatIsOpen) {
-        state.hasNewMessage = false;
-      }
+      state.hasNewMessage = false;
     },
     sendMessage: (state, action: PayloadAction<string>) => {
       state.hasNewMessage = false;
