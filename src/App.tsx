@@ -44,6 +44,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     initChat();
+    handleOnResize();
     window.addEventListener('resize', handleOnResize);
     return function cleanup() {
       window.removeEventListener('resize', handleOnResize);

@@ -17,7 +17,7 @@ interface MessageObject {
 }
 
 type MessageArray = Array<MessageObject>;
-export interface ChatState {
+interface ChatState {
   status: 'idle' | 'loading' | 'failed' | 'loaded';
   chatIsOpen: boolean;
   messages: MessageArray;
