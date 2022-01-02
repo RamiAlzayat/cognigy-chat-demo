@@ -10,9 +10,10 @@ otherwise download it from `https://nodejs.org/en/download/`
 
 ## Dev Setup
 
-Just run `npm install`<br />
-then `npm start` Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- run `npm install`
+- Run `npm run setup` to generate .env file then Paste your chat token in there
+- then `npm start` Runs the app in the development mode.<br />
+  Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Tests
 
