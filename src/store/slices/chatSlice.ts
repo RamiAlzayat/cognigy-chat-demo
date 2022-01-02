@@ -2,13 +2,10 @@ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '..';
 import { getCurrentTimeStamp } from '../../helpers/helpers';
 import { SocketClient } from '@cognigy/socket-client';
-const client = new SocketClient(
-  'https://endpoint-trial.cognigy.ai',
-  '32a17140dc19d19b5c0b6e08f94def9ade56eba3a40fe3dfc64a061368fa5a9e',
-  {
-    forceWebsockets: true,
-  },
-);
+const token = process.env.REACT_APP_COGNIGY_SOCKET_TOKEN || '';
+const client = new SocketClient('https://endpoint-trial.cognigy.ai', token, {
+  forceWebsockets: true,
+});
 interface MessageObject {
   text: string;
   sender: string;
